@@ -1,0 +1,10 @@
+{
+    "token": "",
+    "pollingInterval": 1000,
+    "channels": {
+        "EU": "",
+        "NA": "",
+        "AS": "",
+        "SA": ""
+    }
+}

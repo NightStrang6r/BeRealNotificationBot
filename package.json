@@ -1,0 +1,24 @@
+{
+  "name": "berealnotificationbot",
+  "version": "1.0.0",
+  "description": "Telegram Bot for delivering instant BeReal notifications",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "tsc & node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "node-fetch": "^3.3.2",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "typescript": "^5.4.5"
+  }
+}
