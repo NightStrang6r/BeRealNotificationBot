@@ -1,3 +1,4 @@
+import c from 'chalk';
 import fetch from 'node-fetch';
 
 import log from './log.js';
@@ -30,7 +31,14 @@ class API {
 
     async get(url: string): Promise<NotificationData | null>{
         try {
-            const response = await fetch(url);
+            const headers: HeadersInit = {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Accept': 'application/json',
+                'Connection': 'keep-alive'
+            };   
+                
+            const response = await fetch(url, { headers });
             const json = await response.json() as NotificationData;
 
             if (json.id === null || json.startDate === null || json.endDate === null) {
@@ -91,14 +99,23 @@ class API {
 
     async startPolling(regions: Region[], notificationCallback: (region: Region, notification: NotificationData) => Promise<void>) {
         while (true) {
+            const promises = [];
+
+            const timeStart = Date.now();
             for (const region of regions) {
-                const isNew = await this.checkForNewNotification(region);
+                log(`Checking for new notifications in ${c.white(region)}...`, 'c');
+                promises.push(this.checkForNewNotification(region));
+            }
 
-                log(`Checking for new notifications in ${region}...`, 'c');
+            const results = await Promise.all(promises);
+            const timeEnd = Date.now();
+            const timeElapsed = timeEnd - timeStart;
+            log(`Checked in ${c.white(`${timeElapsed}ms`)}`, 'c');
 
-                if (isNew) {
-                    log(`New notification in ${region}!`, 'g');
-                    notificationCallback(region, this.lastNotifications[region]);
+            for (let i = 0; i < regions.length; i++) {
+                if (results[i]) {
+                    log(`New notification in ${c.white(regions[i])}!`, 'g');
+                    notificationCallback(regions[i], this.lastNotifications[regions[i]]);
                 }
             }
 

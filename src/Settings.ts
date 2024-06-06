@@ -16,7 +16,7 @@ class Settings {
             const data = fs.readFileSync('settings.json', 'utf-8');
             const settings = JSON.parse(data);
 
-            if (!settings.token || !settings.pollingInterval || !settings.channels) {
+            if (!settings.token || settings.pollingInterval == null || !settings.channels) {
                 throw new Error('Invalid settings file.');
             }
 

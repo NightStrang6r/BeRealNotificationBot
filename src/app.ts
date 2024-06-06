@@ -1,5 +1,4 @@
 import c from 'chalk';
-import fs from 'fs';
 
 import log from './log.js';
 import TelegramBot from './telegram.js';
@@ -39,8 +38,10 @@ class App {
     }
 
     onUncaughtException(err: Error) {
-        console.error('Caught exception: ', err);
+        log('Uncaught exception', 'r');
+        console.error(err);
         console.error(err.stack);
+        process.exit(1);
     }
 }
 
