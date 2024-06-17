@@ -9,7 +9,6 @@ import Settings from './Settings.js';
 import Region from './enums/Region.js';
 import NotificationData from './interfaces/NotificationData.js';
 
-
 class App {
     private bot: TelegramBot;
     private api: API;
