@@ -14,6 +14,12 @@
 
 📲 You can subscribe to INSTANT BeReal notifications in Telegram here: **https://t.me/BeRealNotifyBot**
 
+## 🤔 **Why?**
+
+I encountered a problem that my BeReal notification arrived late, arrived without sound, or did not arrive at all. After searching the Internet, I found out that I am not the only one who has this problem. Therefore, I decided to transfer BeReal notifications to Telegram, which has an instant speed of sending notifications, without loss, and has the ability to customize the notification sound. 
+
+As a result, notifications now arrive smoothly and much earlier than the official notification.
+
 ## ❓ **How it works?**
 
 - To obtain notification data, we use the internal API of the BeReal application, for example: [Click](https://mobile.bereal.com/api/bereal/moments/last/europe-west)
